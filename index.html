@@ -2,33 +2,39 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>El Semáforo de la Suerte</title>
 <style>
-:root{--bg:#f4f7f5;--card:#fff;--text:#18322a;--muted:#66756f;--green:#22a06b;--yellow:#e6a817;--red:#d64545;--line:#dfe8e3}
-*{box-sizing:border-box} body{margin:0;background:linear-gradient(160deg,#eef8f2,#f8faf9);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text)}
-.wrap{max-width:760px;margin:auto;padding:20px 14px 40px}.hero{text-align:center;padding:18px 8px}.logo{font-size:48px}.hero h1{margin:4px 0;font-size:30px}.hero p{margin:6px auto;color:var(--muted);max-width:560px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0;box-shadow:0 8px 25px #18322a0b}
-h2{font-size:20px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(11,1fr);gap:7px}.num{border:1px solid var(--line);background:#f8fbf9;border-radius:10px;padding:10px 2px;font-weight:700;cursor:pointer}.num.selected{background:#18322a;color:white;border-color:#18322a}.num:disabled{opacity:.45;cursor:not-allowed}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.btn{border:0;border-radius:13px;padding:13px 16px;font-weight:800;cursor:pointer}.primary{background:#18322a;color:#fff}.secondary{background:#e9f3ee;color:#18322a}
-.chosen{min-height:38px;margin-top:14px;color:var(--muted)}.chosen b{color:var(--text)}
-.result{text-align:center}.light{width:86px;height:86px;border-radius:50%;margin:5px auto 10px;box-shadow:0 0 0 7px #fff,0 5px 22px #0002}.green{background:var(--green)}.yellow{background:var(--yellow)}.red{background:var(--red)}
-.score{font-size:38px;font-weight:900}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef3f0;font-weight:800;margin:3px}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:15px}.metric{background:#f7faf8;border-radius:13px;padding:11px}.metric small{display:block;color:var(--muted)}.metric b{font-size:18px}
-.note{font-size:12px;color:var(--muted);line-height:1.5}.history{max-height:270px;overflow:auto}.row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:9px 0;font-size:14px}.nav{display:flex;gap:8px;overflow:auto;margin:10px 0}.nav button{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px}.section{display:none}.section.active{display:block}
-@media(max-width:520px){.grid{grid-template-columns:repeat(6,1fr)}.hero h1{font-size:26px}}
+:root{--bg:#f4f7f5;--card:#fff;--text:#18322a;--muted:#66756f;--green:#22a06b;--yellow:#e6a817;--red:#d64545;--line:#dfe8e3;--blue:#0785f2}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(160deg,#eef8f2,#f8faf9);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text)}
+.wrap{max-width:760px;margin:auto;padding:14px 14px 40px}.hero{text-align:center;padding:18px 8px 10px}.logo{font-size:48px}.hero h1{margin:4px 0;font-size:30px}.hero p{margin:6px auto;color:var(--muted);max-width:560px;line-height:1.4}
+.game-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 14px;position:sticky;top:0;z-index:5;padding:8px 0;background:#f3f8f5ee;backdrop-filter:blur(8px)}
+.game-tab{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:15px;padding:11px 7px;font-weight:850;font-size:14px;cursor:pointer;box-shadow:0 3px 10px #18322a08}.game-tab.active{background:#18322a;color:#fff;border-color:#18322a}.game-tab small{display:block;font-size:11px;font-weight:600;opacity:.75;margin-top:2px}
+.nav{display:flex;gap:8px;overflow:auto;margin:0 0 12px}.nav button{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:999px;padding:9px 13px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0;box-shadow:0 8px 25px #18322a0b}h2{font-size:21px;margin:0 0 8px}.subtitle{color:var(--muted);margin:0 0 15px}.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.grid.big{grid-template-columns:repeat(10,1fr)}.num{border:1px solid var(--line);background:#f8fbf9;color:#0785f2;border-radius:10px;padding:10px 2px;font-weight:800;font-size:15px;cursor:pointer;min-width:0}.big .num{padding:9px 1px;font-size:14px}.num.selected{background:#18322a;color:white;border-color:#18322a}.num:disabled{opacity:.4;cursor:not-allowed}
+.chosen{min-height:38px;margin-top:14px;color:var(--muted);line-height:1.6}.chosen b{color:var(--text)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.btn{border:0;border-radius:13px;padding:13px 16px;font-weight:800;cursor:pointer;flex:1;min-width:145px}.primary{background:#18322a;color:#fff}.secondary{background:#e9f3ee;color:#18322a}
+.result{text-align:center}.light{width:76px;height:76px;border-radius:50%;margin:5px auto 10px;box-shadow:0 0 0 7px #fff,0 5px 22px #0002}.green{background:var(--green)}.yellow{background:var(--yellow)}.red{background:var(--red)}.score{font-size:38px;font-weight:900}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef3f0;font-weight:800;margin:3px}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:15px}.metric{background:#f7faf8;border-radius:13px;padding:11px}.metric small{display:block;color:var(--muted)}.metric b{font-size:18px}.note{font-size:12px;color:var(--muted);line-height:1.5}.history{max-height:300px;overflow:auto}.row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:9px 0;font-size:14px}.section{display:none}.section.active{display:block}.game-title{display:flex;align-items:center;justify-content:space-between;gap:10px}.pill{font-size:12px;background:#eef3f0;padding:6px 9px;border-radius:999px;font-weight:800}.empty{padding:18px;border-radius:15px;background:#f7faf8;color:var(--muted);line-height:1.5}
+@media(max-width:520px){.hero h1{font-size:26px}.game-tab{font-size:13px}.grid{grid-template-columns:repeat(6,1fr)}.grid.big{grid-template-columns:repeat(5,1fr)}.big .num{padding:10px 1px}.actions{display:grid;grid-template-columns:1fr 1fr}.actions .btn:last-child{grid-column:1/-1;flex:none;width:110px}.card{padding:18px}.row{font-size:13px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="hero"><div class="logo">🚦🍀</div><h1>El Semáforo de la Suerte</h1><p>Analizá tu jugada antes de jugar. Un índice de equilibrio estadístico para el Súper Premio 6/33.</p></header>
+<header class="hero"><div class="logo">🚦🍀</div><h1>El Semáforo de la Suerte</h1><p>Analizá tu jugada antes de jugar. Un índice de equilibrio estadístico para los juegos de Loterías de Honduras.</p></header>
 
-<div class="nav">
-<button onclick="show('inicio')">🏠 Inicio</button><button onclick="show('stats')">📊 Estadísticas</button><button onclick="show('history')">📚 Historial</button>
+<div class="game-tabs">
+<button class="game-tab active" onclick="setGame('super')">🎱 Súper Premio<small>6 números · 01–33</small></button>
+<button class="game-tab" onclick="setGame('pega3')">🎯 Pega 3<small>3 números · 00–99</small></button>
+<button class="game-tab" onclick="setGame('pega2')">🎯 Pega 2<small>2 números · 00–99</small></button>
 </div>
+
+<div class="nav"><button onclick="show('inicio')">🏠 Inicio</button><button onclick="show('stats')">📊 Estadísticas</button><button onclick="show('history')">📚 Historial</button></div>
 
 <section id="inicio" class="section active">
 <div class="card">
-<h2>Elegí 6 números</h2><div id="grid" class="grid"></div>
+<div class="game-title"><h2 id="gameHeading">Elegí 6 números</h2><span class="pill" id="gameRule">01–33</span></div>
+<p class="subtitle" id="gameSubtitle">Súper Premio · seleccioná 6 números</p>
+<div id="grid" class="grid"></div>
 <div class="chosen">Seleccionados: <b id="chosen">ninguno</b></div>
 <div class="actions"><button class="btn primary" onclick="analyze()">🚦 Analizar mi jugada</button><button class="btn secondary" onclick="generate()">🎲 Generar jugada</button><button class="btn secondary" onclick="clearPick()">Limpiar</button></div>
 </div>
@@ -36,63 +42,43 @@ h2{font-size:20px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repea
 <div class="card"><h2>¿Cómo funciona?</h2><p class="note">El semáforo mide qué tan equilibrada es una combinación según criterios matemáticos e históricos. No significa que una combinación tenga mayor probabilidad real de ganar: en un sorteo justo, todas las combinaciones válidas tienen la misma probabilidad.</p></div>
 </section>
 
-<section id="stats" class="section">
-<div class="card"><h2>📊 Estadísticas del historial cargado</h2><div id="statsbox"></div><p class="note">La V1 incluye una muestra inicial de resultados para probar el funcionamiento. En la siguiente etapa podemos cargar el historial completo de la fuente y recalcular todo automáticamente.</p></div>
-</section>
-
-<section id="history" class="section">
-<div class="card"><h2>📚 Resultados de referencia</h2><div id="historybox" class="history"></div></div>
-</section>
+<section id="stats" class="section"><div class="card"><h2>📊 Estadísticas</h2><div id="statsbox"></div></div></section>
+<section id="history" class="section"><div class="card"><h2>📚 Historial</h2><div id="historybox" class="history"></div></div></section>
 </div>
+
 <script>
-const historyData=[
-["15/08/2026",[5,8,16,25,26,30]],["12/08/2026",[8,9,13,15,24,27]],["08/08/2026",[1,4,5,10,20,28]],
-["05/08/2026",[5,10,20,21,30,32]],["01/08/2026",[2,5,7,8,14,22]],["29/07/2026",[7,10,22,23,25,30]],
-["25/07/2026",[13,17,20,30,31,33]],["22/07/2026",[8,10,12,21,22,30]],["18/07/2026",[5,11,15,22,27,29]],
-["15/07/2026",[8,11,15,18,19,29]],["11/07/2026",[1,4,13,19,21,33]],["08/07/2026",[6,8,13,17,24,26]],
-["04/07/2026",[4,5,11,15,20,33]],["01/07/2026",[1,4,6,18,19,20]],["27/06/2026",[6,11,14,19,23,26]],
-["24/06/2026",[8,10,11,13,17,32]],["20/06/2026",[2,11,14,23,25,29]],["17/06/2026",[5,11,17,24,30,31]],
-["13/06/2026",[1,10,12,18,30,31]],["10/06/2026",[3,6,8,10,12,13]]
-];
-let selected=[];
-const grid=document.getElementById("grid");
-for(let n=1;n<=33;n++){let b=document.createElement("button");b.className="num";b.textContent=String(n).padStart(2,"0");b.onclick=()=>toggle(n,b);grid.appendChild(b)}
-function toggle(n,b){if(selected.includes(n)){selected=selected.filter(x=>x!==n);b.classList.remove("selected")}else if(selected.length<6){selected.push(n);b.classList.add("selected")}document.getElementById("chosen").textContent=selected.length?selected.sort((a,b)=>a-b).map(x=>String(x).padStart(2,"0")).join(" · "):"ninguno";document.querySelectorAll(".num").forEach(x=>x.disabled=selected.length>=6&&!x.classList.contains("selected"))}
-function clearPick(){selected=[];document.querySelectorAll(".num").forEach(x=>{x.classList.remove("selected");x.disabled=false});document.getElementById("chosen").textContent="ninguno";document.getElementById("result").style.display="none"}
+const games={
+ super:{name:'Súper Premio',count:6,max:33,min:1,rule:'01–33',emoji:'🎱',history:true},
+ pega3:{name:'Pega 3',count:3,max:99,min:0,rule:'00–99',emoji:'🎯',history:false},
+ pega2:{name:'Pega 2',count:2,max:99,min:0,rule:'00–99',emoji:'🎯',history:false}
+};
+let current='super',selected=[];
+const historyData=[["15/08/2026",[5,8,16,25,26,30]],["12/08/2026",[8,9,13,15,24,27]],["08/08/2026",[1,4,5,10,20,28]],["05/08/2026",[5,10,20,21,30,32]],["01/08/2026",[2,5,7,8,14,22]],["29/07/2026",[7,10,22,23,25,30]],["25/07/2026",[13,17,20,30,31,33]],["22/07/2026",[8,10,12,21,22,30]],["18/07/2026",[5,11,15,22,27,29]],["15/07/2026",[8,11,15,18,19,29]],["11/07/2026",[1,4,13,19,21,33]],["08/07/2026",[6,8,13,17,24,26]],["04/07/2026",[4,5,11,15,20,33]],["01/07/2026",[1,4,6,18,19,20]],["27/06/2026",[6,11,14,19,23,26]],["24/06/2026",[8,10,11,13,17,32]],["20/06/2026",[2,11,14,23,25,29]],["17/06/2026",[5,11,17,24,30,31]],["13/06/2026",[1,10,12,18,30,31]],["10/06/2026",[3,6,8,10,12,13]]];
+
+function fmt(n){return String(n).padStart(2,'0')}
+function setGame(id){current=id;selected=[];document.querySelectorAll('.game-tab').forEach((b,i)=>b.classList.toggle('active',['super','pega3','pega2'][i]===id));document.getElementById('gameHeading').textContent=`Elegí ${games[id].count} ${games[id].count===1?'número':'números'}`;document.getElementById('gameRule').textContent=games[id].rule;document.getElementById('gameSubtitle').textContent=`${games[id].name} · seleccioná ${games[id].count} ${games[id].count===1?'número':'números'}`;buildGrid();updateChosen();document.getElementById('result').style.display='none';}
+function buildGrid(){const g=document.getElementById('grid');g.innerHTML='';g.className='grid'+(games[current].max>33?' big':'');for(let n=games[current].min;n<=games[current].max;n++){let b=document.createElement('button');b.className='num';b.textContent=fmt(n);b.onclick=()=>toggle(n,b);g.appendChild(b)}}
+function toggle(n,b){if(selected.includes(n)){selected=selected.filter(x=>x!==n);b.classList.remove('selected')}else if(selected.length<games[current].count){selected.push(n);b.classList.add('selected')}updateChosen();document.querySelectorAll('.num').forEach(x=>x.disabled=selected.length>=games[current].count&&!x.classList.contains('selected'))}
+function updateChosen(){selected.sort((a,b)=>a-b);document.getElementById('chosen').textContent=selected.length?selected.map(fmt).join(' · '):'ninguno'}
+function clearPick(){selected=[];document.querySelectorAll('.num').forEach(x=>{x.classList.remove('selected');x.disabled=false});updateChosen();document.getElementById('result').style.display='none'}
 function score(a){
-let sum=a.reduce((x,y)=>x+y,0), ev=a.filter(x=>x%2===0).length, low=a.filter(x=>x<=11).length, mid=a.filter(x=>x>=12&&x<=22).length, high=a.filter(x=>x>=23).length;
-let cons=0; for(let i=1;i<a.length;i++) if(a[i]===a[i-1]+1) cons++;
-let s=100;
-s-=Math.min(25,Math.abs(sum-99)*0.55);
-s-=Math.abs(ev-3)*7;
-let spread=Math.max(...a)-Math.min(...a); if(spread<18)s-=12;
-if(cons>=2)s-=Math.min(22,(cons-1)*10);
-let buckets=[low,mid,high]; s-=Math.max(...buckets)-2>0? (Math.max(...buckets)-2)*8:0;
-s=Math.max(0,Math.min(100,Math.round(s)));
-return {s,sum,ev,odd:6-ev,low,mid,high,cons};
+let g=games[current],sum=a.reduce((x,y)=>x+y,0),ev=a.filter(x=>x%2===0).length,cons=0;for(let i=1;i<a.length;i++)if(a[i]===a[i-1]+1)cons++;
+let s=100, target=(g.max*g.count)/2;
+// For each game, the score measures balance only; it is NOT a winning probability.
+s-=Math.min(30,Math.abs(sum-target)*0.9);
+s-=Math.abs(ev-a.length/2)*12;
+if(a.length>=3){let range=Math.max(...a)-Math.min(...a);if(range<g.max*0.35)s-=10;if(cons>=2)s-=18}
+if(a.length===2 && Math.abs(a[0]-a[1])<=1)s-=12;
+if(g===games.super){let low=a.filter(x=>x<=11).length,mid=a.filter(x=>x>=12&&x<=22).length,high=a.filter(x=>x>=23).length;s-=(Math.max(low,mid,high)-2)*8;return {s:clamp(s),sum,ev,odd:a.length-ev,cons,low,mid,high}}
+return {s:clamp(s),sum,ev,odd:a.length-ev,cons,range:Math.max(...a)-Math.min(...a)};
 }
-function analyze(){
-if(selected.length!==6){alert("Seleccioná exactamente 6 números.");return}
-renderResult(selected,score([...selected].sort((a,b)=>a-b)));
-}
-function generate(){
-let best=null,bestScore=-1;
-for(let i=0;i<4000;i++){let a=[];while(a.length<6){let n=1+Math.floor(Math.random()*33);if(!a.includes(n))a.push(n)}a.sort((x,y)=>x-y);let r=score(a);if(r.s>bestScore){best=a;bestScore=r.s}}
-clearPick();best.forEach(n=>{let b=[...document.querySelectorAll(".num")].find(x=>+x.textContent===n);toggle(n,b)});renderResult(best,score(best));
-}
-function renderResult(a,r){
-let cls=r.s>=80?"green":r.s>=60?"yellow":"red", label=cls==="green"?"VERDE":cls==="yellow"?"AMARILLO":"ROJO";
-let desc=cls==="green"?"Combinación muy equilibrada según los criterios de esta versión.":cls==="yellow"?"Combinación con un balance aceptable, aunque presenta algún sesgo.":"Combinación con varios rasgos extremos o poco equilibrados.";
-let el=document.getElementById("result");el.style.display="block";el.innerHTML=`<div class="light ${cls}"></div><h2>🟢🟡🔴 ${label}</h2><div class="score">${r.s}/100</div><p>${desc}</p><div>${a.map(n=>`<span class="tag">${String(n).padStart(2,"0")}</span>`).join("")}</div><div class="metrics"><div class="metric"><small>Suma</small><b>${r.sum}</b></div><div class="metric"><small>Par / impar</small><b>${r.ev} / ${r.odd}</b></div><div class="metric"><small>01–11</small><b>${r.low}</b></div><div class="metric"><small>12–22</small><b>${r.mid}</b></div><div class="metric"><small>23–33</small><b>${r.high}</b></div><div class="metric"><small>Consecutivos</small><b>${r.cons}</b></div></div><p class="note">Este puntaje representa equilibrio estadístico, no una probabilidad garantizada de ganar.</p>`;
-el.scrollIntoView({behavior:"smooth",block:"center"});
-}
-function show(id){document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");if(id==="stats")stats();if(id==="history")history()}
-function stats(){
-let c=Array(34).fill(0);historyData.forEach(x=>x[1].forEach(n=>c[n]++));let arr=Array.from({length:33},(_,i)=>({n:i+1,c:c[i+1]})).sort((a,b)=>b.c-a.c);
-document.getElementById("statsbox").innerHTML=`<p><b>🔥 Más frecuentes en la muestra:</b><br>${arr.slice(0,8).map(x=>String(x.n).padStart(2,"0")+" ("+x.c+" veces)").join(" · ")}</p><p><b>❄️ Menos frecuentes:</b><br>${arr.slice(-8).sort((a,b)=>a.c-b.c).map(x=>String(x.n).padStart(2,"0")+" ("+x.c+" veces)").join(" · ")}</p><p><b>Sorteos analizados:</b> ${historyData.length}</p>`;
-}
-function history(){document.getElementById("historybox").innerHTML=historyData.map(x=>`<div class="row"><span>${x[0]}</span><b>${x[1].map(n=>String(n).padStart(2,"0")).join(" · ")}</b></div>`).join("")}
-stats();
-history();
+function clamp(x){return Math.max(0,Math.min(100,Math.round(x)))}
+function analyze(){if(selected.length!==games[current].count){alert(`Seleccioná exactamente ${games[current].count} ${games[current].count===1?'número':'números'}.`);return}renderResult([...selected].sort((a,b)=>a-b),score([...selected].sort((a,b)=>a-b)))}
+function generate(){let best=null,bestScore=-1,g=games[current];for(let i=0;i<5000;i++){let a=[];while(a.length<g.count){let n=g.min+Math.floor(Math.random()*(g.max-g.min+1));if(!a.includes(n))a.push(n)}a.sort((x,y)=>x-y);let r=score(a);if(r.s>bestScore){best=a;bestScore=r.s}}clearPick();best.forEach(n=>{let b=[...document.querySelectorAll('.num')].find(x=>+x.textContent===n);toggle(n,b)});renderResult(best,score(best))}
+function renderResult(a,r){let cls=r.s>=80?'green':r.s>=60?'yellow':'red',label=cls==='green'?'VERDE':cls==='yellow'?'AMARILLO':'ROJO';let desc=cls==='green'?'Combinación muy equilibrada según los criterios de esta versión.':cls==='yellow'?'Combinación con un balance aceptable, aunque presenta algún sesgo.':'Combinación con varios rasgos extremos o poco equilibrados.';let metrics=`<div class="metric"><small>Suma</small><b>${r.sum}</b></div><div class="metric"><small>Par / impar</small><b>${r.ev} / ${r.odd}</b></div>`;if(current==='super')metrics+=`<div class="metric"><small>01–11</small><b>${r.low}</b></div><div class="metric"><small>12–22</small><b>${r.mid}</b></div><div class="metric"><small>23–33</small><b>${r.high}</b></div>`;else metrics+=`<div class="metric"><small>Rango</small><b>${r.range}</b></div>`;metrics+=`<div class="metric"><small>Consecutivos</small><b>${r.cons}</b></div>`;let el=document.getElementById('result');el.style.display='block';el.innerHTML=`<div class="light ${cls}"></div><h2>${games[current].emoji} ${label}</h2><div class="score">${r.s}/100</div><p>${desc}</p><div>${a.map(n=>`<span class="tag">${fmt(n)}</span>`).join('')}</div><div class="metrics">${metrics}</div><p class="note">Este puntaje representa equilibrio estadístico, no una probabilidad garantizada de ganar.</p>`;el.scrollIntoView({behavior:'smooth',block:'center'})}
+function show(id){document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='stats')stats();if(id==='history')history()}
+function stats(){let box=document.getElementById('statsbox');if(current!=='super'){box.innerHTML=`<div class="empty"><b>${games[current].name}</b> todavía no tiene historial cargado.<br><br>Cuando me pases las jugadas anteriores, podremos incorporarlas aquí y calcular las estadísticas reales de este juego.</div>`;return}let c=Array(34).fill(0);historyData.forEach(x=>x[1].forEach(n=>c[n]++));let arr=Array.from({length:33},(_,i)=>({n:i+1,c:c[i+1]})).sort((a,b)=>b.c-a.c);box.innerHTML=`<p><b>🔥 Más frecuentes en la muestra:</b><br>${arr.slice(0,8).map(x=>fmt(x.n)+' ('+x.c+' veces)').join(' · ')}</p><p><b>❄️ Menos frecuentes:</b><br>${arr.slice(-8).sort((a,b)=>a.c-b.c).map(x=>fmt(x.n)+' ('+x.c+' veces)').join(' · ')}</p><p><b>Sorteos analizados:</b> ${historyData.length}</p><p class="note">Esta muestra es provisional. El historial completo se incorporará antes de usarlo para el análisis estadístico.</p>`}
+function history(){let box=document.getElementById('historybox');if(current!=='super'){box.innerHTML=`<div class="empty">El historial de <b>${games[current].name}</b> todavía está pendiente de cargar.<br><br>Cuando tengamos sus resultados anteriores, aparecerán aquí.</div>`;return}box.innerHTML=historyData.map(x=>`<div class="row"><span>${x[0]}</span><b>${x[1].map(fmt).join(' · ')}</b></div>`).join('')}
+setGame('super');
 </script>
 </body></html>
